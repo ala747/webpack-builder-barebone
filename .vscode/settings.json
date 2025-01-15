@@ -1,0 +1,15 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "eslint.nodeEnv": "development",
+  "css.validate": true,
+  "less.validate": true,
+  "scss.validate": true,
+  "stylelint.packageManager": "npm",
+  "stylelint.validate": ["css", "scss", "postcss-html", "vue"],
+  "stylelint.snippet": ["css", "scss", "postcss-html"],
+  "stylelint.stylelintPath": "node_modules/stylelint",
+  "stylelint.configFile": "stylelint.config.js"
+}

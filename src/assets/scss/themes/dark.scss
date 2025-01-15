@@ -1,0 +1,10 @@
+$fg: #eee;
+$bg: #123;
+
+.dark {
+  @import '../_app';
+  body {
+    color: $fg;
+    background: $bg;
+  }
+}

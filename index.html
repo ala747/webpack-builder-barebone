@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="timestamp" content="<%= timestamp %>" />
+<!-- let's filter Themes' links -->
+<%= htmlWebpackPlugin
+  .tags
+  .headTags
+  .filter((tag) => !(new RegExp(themes.map(x => x.name).join("|")).test(tag.attributes.href)))
+  .join('')
+%>
+</head>
+<body>
+  <div id="app"></div>
+  <!-- let's filter Themes' scripts -->
+  <%= htmlWebpackPlugin
+    .tags
+    .bodyTags
+    .filter((tag) => !(new RegExp(themes.map(x => x.name).join("|")).test(tag.attributes.src)))
+    .join('')
+  %>
+</html>

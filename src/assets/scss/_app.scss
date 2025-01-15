@@ -1,0 +1,21 @@
+body {
+  font-family: helvetica, arial, sans-serif;
+  font-size: large
+}
+
+h1 {
+  font-weight: 800;
+}
+
+.env {
+  > div {
+    padding: 10px 15px 10px 15px;
+    border: 1px solid #f00;
+
+    &:hover {
+      border-color: #0f0;
+      border-radius: 10px;
+      font: italic normal bold normal 14px 1.2 serif !important;
+    }
+  }
+}

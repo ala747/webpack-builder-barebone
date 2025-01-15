@@ -1,0 +1,55 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "corejs": 2
+      }
+    ],
+    "wildcard",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-import-meta",
+    "@babel/plugin-transform-class-properties",
+    "@babel/plugin-transform-json-strings",
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    "@babel/plugin-proposal-function-sent",
+    "@babel/plugin-transform-export-namespace-from",
+    "@babel/plugin-transform-numeric-separator",
+    "@babel/plugin-proposal-throw-expressions"
+  ],
+  "comments": false,
+  "env": {
+    "test": {
+      "presets": ["@babel/preset-env"],
+      "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-syntax-import-meta",
+        "@babel/plugin-transform-class-properties",
+        "@babel/plugin-transform-json-strings",
+        [
+          "@babel/plugin-proposal-decorators",
+          {
+            "legacy": true
+          }
+        ],
+        "@babel/plugin-proposal-function-sent",
+        "@babel/plugin-transform-export-namespace-from",
+        "@babel/plugin-transform-numeric-separator",
+        "@babel/plugin-proposal-throw-expressions"
+      ]
+    }
+  }
+}

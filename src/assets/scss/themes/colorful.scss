@@ -1,0 +1,13 @@
+$fg: #1a1313;
+$bg: rgb(0, 223, 48);
+
+.colorful {
+  @import '../_app';
+  body {
+    color: $fg;
+    background: $bg;
+  }
+  h1 {
+    color: #00f
+  }
+}
