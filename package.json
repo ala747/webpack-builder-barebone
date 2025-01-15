@@ -1,7 +1,7 @@
 {
   "name": "webpack-builder-barebone",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dev server and build system using Webpack 5, Babel 7, Eslint 8, Stylelint 16, Autoprefixer 10, SASS 1, Less 4, Express 4 and Vue 2",
   "main": "index.js",
   "scripts": {
     "preinstall": "npx npm-force-resolutions || echo 1",
