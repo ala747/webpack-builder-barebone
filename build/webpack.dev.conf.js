@@ -33,7 +33,18 @@ module.exports = merge(baseWebpackConfig, {
     //   fix: true,
     //   files: ['**/*.vue']
     // }),
+    new StylelintPlugin({
+      cache: true,
+      context: 'src',
+      syntax: 'scss',
+      configFile: './stylelint.config.js',
+      fix: true,
+      // files: ['./src/assets/**/*.scss'],
+      extensions: ['css', 'scss', 'sass', 'vue'],
+      formatter: 'verbose'
+    }),
     new ESLintPlugin({
+      cache: false,
       extensions: ['js', 'vue'],
       exclude: ['node_modules']
     }),
@@ -52,16 +63,6 @@ module.exports = merge(baseWebpackConfig, {
         timestamp: config.build.timestamp,
         themes: config.build.themes
       }
-    }),
-    new StylelintPlugin({
-      cache: false,
-      context: 'src',
-      syntax: 'scss',
-      configFile: './stylelint.config.js',
-      fix: true,
-      // files: ['./src/assets/**/*.scss'],
-      extensions: ['css', 'scss', 'sass', 'vue'],
-      formatter: 'verbose'
     }),
     new FriendlyErrorsPlugin()
   ]

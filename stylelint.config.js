@@ -1,5 +1,5 @@
 module.exports = {
-  files: ['*.scss', '**/*.scss', '**/*.vue'],
+  files: ['**/*.scss', '**/*.sass', '**/*.css', '**/*.vue'],
   plugins: [
     '@stylistic/stylelint-plugin',
     'stylelint-scss'

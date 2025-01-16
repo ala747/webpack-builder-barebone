@@ -33,6 +33,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       'process.env': Object.fromEntries(Object.entries(process.env).map(x => [x[0], JSON.stringify(x[1])]))
     }),
     new ESLintPlugin({
+      cache: false,
       extensions: ['js', 'vue'],
       exclude: ['node_modules']
     }),
