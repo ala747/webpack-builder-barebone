@@ -14,16 +14,16 @@ class SuppressEntryChunksPlugin {
   apply(compiler) {
     compiler.hooks.compilation.tap(
       this.constructor.name,
-      (compilation) => {
+      compilation => {
         compilation.hooks.processAssets.tap({
           name: this.constructor.name,
           stage: compilation.PROCESS_ASSETS_STAGE_SUMMARIZE
         }, () => {
-          compilation.chunks.forEach(chunk => {
+          for (const chunk of compilation.chunks) {
             if (this.files.map(file => file.name).includes(chunk.name)) {
-              const { match, keep } = this.files.find(f => f.name === chunk.name);
+              const { match, keep } = this.files.find(f => f.name === chunk.name)
 
-              [...chunk.files]
+              for (const file of [...chunk.files]
                 .filter(file => {
                   if (match !== null) {
                     const regexp = new RegExp(match)
@@ -33,13 +33,12 @@ class SuppressEntryChunksPlugin {
                     return this.keep ? !regexp.test(file) : regexp.test(file)
                   }
                   return true
-                })
-                .forEach(file => {
-                  chunk.files = [...chunk.files].filter(f => f !== file)
-                  delete compilation.assets[file]
-                })
+                })) {
+                chunk.files = [...chunk.files].filter(f => f !== file)
+                delete compilation.assets[file]
+              }
             }
-          })
+          }
         })
       }
     )

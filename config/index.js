@@ -1,8 +1,8 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-const path = require('path')
+const path = require('node:path')
 const { globSync } = require('glob')
 const chalk = require('chalk')
-const { exit } = require('process')
+const { exit } = require('node:process')
 let loadedEnv
 let env = process.argv[2] || 'local'
 
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV) {
     loadedEnv = require(`./${env}.env`)
     loadedEnv = { ...process.env, ...loadedEnv }
     console.log(chalk.cyan(`Using config/${env}.env.js`))
-  } catch (error) {
+  } catch {
     console.log(chalk.red(`FATAL ERROR: no ENV file found (looked for './.env.local', './.env' and './config/${env}.env.js')`))
     exit(1)
   }

@@ -7,11 +7,11 @@ if (!process.env.NODE_ENV) {
 
 const ora = require('ora').default
 const chalk = require('chalk')
-const fs = require('fs')
+const fs = require('node:fs')
 const opn = require('opn')
-const path = require('path')
+const path = require('node:path')
 const express = require('express')
-const https = require('https')
+const https = require('node:https')
 const webpack = require('webpack')
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = require('./webpack.dev.conf')
@@ -35,7 +35,7 @@ webpackConfig.plugins.push(new webpack.DefinePlugin({
 try {
   key = fs.readFileSync(path.resolve(`${localDomain}-key.pem`))
   cert = fs.readFileSync(path.resolve(`${localDomain}.pem`))
-} catch (e) {}
+} catch {}
 
 if (key && cert) {
   httpsOptions = {
@@ -56,13 +56,13 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 })
 
 // proxy api requests
-Object.keys(proxyTable).forEach(function (context) {
+for (const context of Object.keys(proxyTable)) {
   let options = proxyTable[context]
   if (typeof options === 'string') {
     options = { target: options }
   }
   app.use(proxyMiddleware(options.filter || context, options))
-})
+}
 
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
@@ -84,12 +84,12 @@ app.use(staticPath, express.static('./static'))
 const uri = `http${key && cert ? 's' : ''}://${localDomain}:${port}`
 
 let _resolve
-const readyPromise = new Promise((resolve) => {
+const readyPromise = new Promise(resolve => {
   _resolve = resolve
 })
 const spinner = ora(chalk.cyan('Starting dev server...\n'))
 spinner.start()
-// console.log('> Starting dev server...')
+
 devMiddleware.waitUntilValid(() => {
   spinner.stop()
   console.log(chalk.green(`\n> Listening at ${uri}\n`))

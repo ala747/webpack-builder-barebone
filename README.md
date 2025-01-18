@@ -1,6 +1,6 @@
 # Webpack Builder Barebone
 
-This is a barebone codebase using Webpack 5, Babel 7, Eslint 8, Stylelint 16, Autoprefixer 10, SASS 1, Less 4, Express 4 and Vue 2.
+This is a barebone codebase using Webpack 5, Babel 7, Eslint 9, Stylelint 16, Autoprefixer 10, SASS 1, Less 4, Express 4 and Vue 2.
 
 Includes both dev server (Express based, includes hot reload, friendly errors, linting and optional HTTPS) and build system. (For development, staging and production evironments.)
 

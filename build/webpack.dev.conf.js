@@ -10,11 +10,9 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
 // add hot-reload related code to entry chunks
-Object.keys(baseWebpackConfig.entry).forEach(function (name) {
-  baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(
-    baseWebpackConfig.entry[name]
-  )
-})
+for (const name of Object.keys(baseWebpackConfig.entry)) {
+  baseWebpackConfig.entry[name] = ['./build/dev-client', baseWebpackConfig.entry[name]]
+}
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'development',
@@ -27,19 +25,12 @@ module.exports = merge(baseWebpackConfig, {
     level: 'warn'
   },
   plugins: [
-    // new StylelintPlugin({
-    //   cache: false,
-    //   configFile: './stylelint.config.js',
-    //   fix: true,
-    //   files: ['**/*.vue']
-    // }),
     new StylelintPlugin({
       cache: true,
       context: 'src',
       syntax: 'scss',
       configFile: './stylelint.config.js',
       fix: true,
-      // files: ['./src/assets/**/*.scss'],
       extensions: ['css', 'scss', 'sass', 'vue'],
       formatter: 'verbose'
     }),
