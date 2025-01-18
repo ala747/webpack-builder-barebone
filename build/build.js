@@ -1,7 +1,7 @@
 require('./check-versions')()
 const ora = require('ora').default
 const { rimraf } = require('rimraf')
-const path = require('path')
+const path = require('node:path')
 const chalk = require('chalk')
 const webpack = require('webpack')
 const config = require('../config')
@@ -28,12 +28,13 @@ rimraf(path.join(config.build.assetsRoot, config.build.assetsSubDirectory))
       console.log(chalk.cyan('  Build complete.\n'))
       console.log(
         chalk.yellow(
-          '  Tip: built files are meant to be served over an HTTP server.\n' +
-            "  Opening index.html over file:// won't work.\n"
+          `  Tip: built files are meant to be served over an HTTP server.
+  Opening index.html over file:// won't work.
+`
         )
       )
     })
   })
-  .catch((err) => {
-    throw err
+  .catch(error => {
+    throw error
   })

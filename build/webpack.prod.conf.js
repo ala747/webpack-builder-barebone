@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('node:path')
 const utils = require('./utils')
 const webpack = require('webpack')
 const config = require('../config')
@@ -95,8 +95,7 @@ if (config.build.productionGzip) {
 }
 
 if (config.build.bundleAnalyzerReport) {
-  const BundleAnalyzerPlugin =
-    require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
   webpackConfig.plugins.push(new BundleAnalyzerPlugin())
 }
 

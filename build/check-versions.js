@@ -3,7 +3,7 @@ const semver = require('semver')
 const packageConfig = require('../package.json')
 
 function exec(cmd) {
-  return require('child_process').execSync(cmd).toString().trim()
+  return require('node:child_process').execSync(cmd).toString().trim()
 }
 
 const versionRequirements = [
@@ -22,19 +22,19 @@ const versionRequirements = [
 module.exports = function () {
   const warnings = []
   for (const versionRequirement of versionRequirements) {
-    const mod = versionRequirement
-    if (!semver.satisfies(mod.currentVersion, mod.versionRequirement)) {
+    const module_ = versionRequirement
+    if (!semver.satisfies(module_.currentVersion, module_.versionRequirement)) {
       warnings.push(
-        mod.name +
-          ': ' +
-          chalk.red(mod.currentVersion) +
-          ' should be ' +
-          chalk.green(mod.versionRequirement)
+        module_.name
+        + ': '
+        + chalk.red(module_.currentVersion)
+        + ' should be '
+        + chalk.green(module_.versionRequirement)
       )
     }
   }
 
-  if (warnings.length) {
+  if (warnings.length > 0) {
     console.log('')
     console.log(
       chalk.yellow(

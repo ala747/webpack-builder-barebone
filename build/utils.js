@@ -1,13 +1,12 @@
-const path = require('path')
+const path = require('node:path')
 const config = require('../config')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const sass = require('sass')
 
 exports.assetsPath = function (_path) {
-  const assetsSubDirectory =
-    process.env.NODE_ENV === 'production'
-      ? config.build.assetsSubDirectory
-      : config.dev.assetsSubDirectory
+  const assetsSubDirectory = process.env.NODE_ENV === 'production'
+    ? config.build.assetsSubDirectory
+    : config.dev.assetsSubDirectory
   return path.posix.join(assetsSubDirectory, _path)
 }
 
@@ -36,11 +35,7 @@ exports.cssLoaders = function (options) {
 
     // Extract CSS when that option is specified
     // (which is the case during production build)
-    if (options.extract) {
-      return [MiniCssExtractPlugin.loader].concat(loaders)
-    } else {
-      return ['vue-style-loader'].concat(loaders)
-    }
+    return options.extract ? [MiniCssExtractPlugin.loader, ...loaders] : ['vue-style-loader', ...loaders]
   }
 
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
